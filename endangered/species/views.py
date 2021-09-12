@@ -12,7 +12,7 @@ from django.core import serializers
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Server for Endangered")
 
 
 def getAllAnimals(request):
