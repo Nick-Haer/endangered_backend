@@ -7,9 +7,17 @@ from django.http import HttpResponse
 
 from .models import Animal
 
+from django.http import JsonResponse
+from django.core import serializers
+
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
+
+
+def getAllAnimals(request):
+    animals = list(Animal.objects.values())
+    return JsonResponse({"data": animals})
 
 
 def getWikiData():
