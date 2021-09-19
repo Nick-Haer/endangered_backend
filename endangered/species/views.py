@@ -9,6 +9,7 @@ from .models import Animal
 
 from django.http import JsonResponse
 from django.core import serializers
+import json
 
 
 def index(request):
@@ -48,11 +49,18 @@ def getWikiData():
             print(animal.description)
 
 
-def getMatchingCharities():
-    queryString = "https://api.data.charitynavigator.org/v2/Organizations?app_id=d7b095ba&app_key=9f6820071629919514265b3843172891"
-    PARAMS = {'app_id': "d7b095ba",
-              "app_key": "9f6820071629919514265b3843172891"}
+def getMatchingCharities(request, name):
+    queryString = "https://api.data.charitynavigator.org/v2/Organizations"
+    PARAMS = {
+        'app_id': "d7b095ba",
+        "app_key": "9f6820071629919514265b3843172891",
+        'search': name,
+        'searchType': 'NAME_ONLY',
+        'nteeType': 'Animal-Related'
+    }
     charities = requests.get(queryString, PARAMS)
+    charitiesList = charities.json()
+    return JsonResponse({'data': charitiesList})
 
 
 def getWWFAnimalsData():
