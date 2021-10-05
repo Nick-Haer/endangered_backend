@@ -18,6 +18,7 @@ def index(request):
 
 def getAllAnimals(request):
     animals = list(Animal.objects.values())
+    print(animals, 'animals')
     return JsonResponse({"data": animals})
 
 
@@ -59,7 +60,14 @@ def getMatchingCharities(request, name):
         'nteeType': 'Animal-Related'
     }
     charities = requests.get(queryString, PARAMS)
+
+    # def charityNameCheck(charity):
+    #     splitCharityName = charity.name.split()
+
+    # filteredCharities = filter(lambda x: x % 2 != 0, char)
     charitiesList = charities.json()
+
+    # print(charitiesList, 'list')
     return JsonResponse({'data': charitiesList})
 
 
