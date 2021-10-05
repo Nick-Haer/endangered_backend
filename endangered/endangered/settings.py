@@ -75,11 +75,6 @@ WSGI_APPLICATION = 'endangered.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-print(os.environ.get('NAME'))
-print(os.environ.get('USER'))
-print(os.environ.get('PASSWORD'))
-print(os.environ.get('HOST'))
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
